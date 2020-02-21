@@ -1,0 +1,38 @@
+.center-view{
+   font-family: "Circular Std Book";
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+.login-right{
+    width: 50vw;
+    height: 100vh;
+    left: 50vw;
+    position: absolute;
+    background: #F5F7FB;
+}
+.login-left{
+  font-family: "Circular Std Book";
+  width: 50vw;
+  height: 100vh;
+  position: absolute;
+  background: #fff;
+  
+  .login-container{
+    padding: 12%;
+  }
+  .login-form{
+    padding: 12%;
+  }
+  .form-title{
+    padding-top:6%;
+  }
+  .my-input{
+    border: 0px;
+    width: 280px;
+    height: 30px;
+    margin: 6% 0% 4% 2%;
+    padding-left: 10px;
+  }
+}

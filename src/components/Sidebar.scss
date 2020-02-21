@@ -1,0 +1,50 @@
+.user-sidebar{
+    width: 8vw;
+    height: 100vh;
+    position: fixed;
+
+    .menu-sidebar{
+        padding-top: 220px;
+        padding-left: 24px;
+        padding-right: 24px;
+    }
+    ul{
+        list-style: none;
+    }
+    li{
+        margin: 40px 0% 0% 20px;
+        text-decoration: none;
+    }
+}
+
+.admin-sidebar{
+    width: 12vw;
+    height: 100vh;
+    position: fixed;
+
+    .title-sidebar{
+        font-weight: 700;
+    }
+
+    .menu-sidebar{
+        padding-top: 40px;
+    }
+    .men{
+        margin-top: 60px;
+    }
+    ul{
+        list-style: none;
+    }
+    li{
+        margin-top: 20px;
+        margin-bottom: 24px;
+        text-decoration: none;
+    }
+    span{
+        color: #B9BAC3;
+        font-family: 'Circular Std Book';
+        font-size: 10pt;
+        font-weight: 400;
+        margin-left: 12px;
+    }
+}
