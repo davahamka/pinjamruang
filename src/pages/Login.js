@@ -4,6 +4,7 @@ import Button from '../components/Button';
 import InputComp from '../components/InputComp';
 import '../components/Login.scss';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 const Login = () => {
     const[nim,setNIM] = useState('');
@@ -12,17 +13,18 @@ const Login = () => {
     const submitLogin = (e) =>{
         console.log('d')
         e.preventDefault()      
-        axios.post('http://192.168.43.24:8000/user/login', { nim, password })
+        axios.post('http://peminjaman.herokuapp.com/user/login', { nim, password })
         .then(res => {
                 console.log('log')
-                localStorage.setItem('token', res.data.token)
+                localStorage.setItem('token', res.data.token);
+                console.log(res)
                 window.location.replace('/')
             })
             .catch(err => {
                 // console.log(err.response.status);
                 switch(err.response.status){
-                    case 500:
-                        console.log("Username/Password salah");
+                    case 401:
+                        Swal.fire('Username/Password salah','','error');
                         break;
                         default:console.log("Berhasil");
                 }

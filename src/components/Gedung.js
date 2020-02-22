@@ -6,12 +6,14 @@ const Gedung = (props) =>{
     let url_string = window.location.href;
     let url = new URL(url_string);
     let gedung = url.searchParams.get("gedung");
-    console.log(gedung);
+    // console.log(gedung);
+    let dataGedung = props.data.dataGedung;
+    console.log(dataGedung)
     return(
         <div className="gedung">
             <div className="left-side" >
                 <div>Gedung</div>
-    <div className="title">{gedung}</div>
+    <div className="title">{dataGedung.nama}</div>
                 <div className="kecil">6 AVAILABLE ROOM</div>
                 <div className="lantai">
                     <li><b>LANTAI 1</b></li>

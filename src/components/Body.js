@@ -7,8 +7,16 @@ import Information from './Information';
 import Activity from './Activity'; 
 import Activitytab from './Activitytab';
 import Gedung from './Gedung';
+import Admin from './Admin';
+import Admincard from './Admincard';
 
 const Body = (props) => {
+
+    let data = {
+        'gedung' : ['A','B','C','D','E','F'],
+        'lantai' : ['1','2'],
+        'ruang' : ['A1.1']
+    }
 
     const bodyView = props.view;
     function showMiniNav(){
@@ -36,6 +44,10 @@ const Body = (props) => {
                     <Activitytab />
                 )
                 break;
+            case "adminhome":
+                return(
+                    <Admincard />
+                )
             default:
                 return(
                     <div>
@@ -50,8 +62,8 @@ const Body = (props) => {
                 return(
                     <div>
                         <div className="event-title">
-                            <div>2020</div>
-                            <div>Februari</div>
+                            <div className="text-atas">2020</div>
+                            <div className="text-bawah">Februari</div>
                         </div>
                         <Eventcard />
                     </div>
@@ -81,10 +93,16 @@ const Body = (props) => {
             case "gedung":
                 return(
                     <div>
-                       <Gedung />
+                       <Gedung data={props.data}/>
                     </div>
                 );
                 break;
+            case "adminhome":
+                return(
+                    <div>
+                        <Admin view="'home" data={data} />
+                    </div>
+                )
 
         }
     }

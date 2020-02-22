@@ -8,9 +8,8 @@ const Admin = () =>{
     return(
         <div>
         <Topbar view="admin" />
-        
-        <Body view="user"/>
-            <Sidebar view="admin" text="Admin"/>
+        <Body view="adminhome"/>
+        <Sidebar view="admin" text="Admin"/>
         </div>
     );
 }

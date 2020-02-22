@@ -4,11 +4,12 @@ import Topbar from '../../components/Topbar';
 import Sidebar from '../../components/Sidebar';
 import Body from '../../components/Body';
 
-const Gedung = () =>{
+const Gedung = (props) =>{
+    let data = props.location.state;
     return(
         <div>
             <Sidebar view="user" tab="information"/>
-            <Body view="gedung"/>
+            <Body view="gedung" data={data}/>
             <Topbar view="user" title="Information"/>
         </div>
 
