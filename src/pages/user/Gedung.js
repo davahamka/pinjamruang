@@ -8,9 +8,15 @@ const Gedung = (props) =>{
     let data = props.location.state;
     return(
         <div>
-            <Sidebar view="user" tab="information"/>
-            <Body view="gedung" data={data}/>
-            <Topbar view="user" title="Information"/>
+            {localStorage.getItem('token')?
+            <div>
+                <Sidebar view="user" tab="information"/>
+                <Body view="gedung" data={data}/>
+                <Topbar view="user" title="Information"/>
+            </div>
+            :
+            window.location.replace('/login')
+            }
         </div>
 
     )

@@ -1,11 +1,6 @@
-import React,{useState} from 'react';
-import Boxgedung from './Boxgedung';
-
+import React from 'react';
 
 const Gedung = (props) =>{
-    let url_string = window.location.href;
-    let url = new URL(url_string);
-    let gedung = url.searchParams.get("gedung");
     // console.log(gedung);
     let dataGedung = props.data.dataGedung;
     console.log(dataGedung)

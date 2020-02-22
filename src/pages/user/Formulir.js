@@ -63,8 +63,9 @@ const Formulir = () =>{
   };
     return(
         <div>
-            {console.log(kegiatan)}
-        <Helmet bodyAttributes={{style: 'background-color : #F7F6F9'}}/>
+            {localStorage.getItem('token')?
+            <div>
+                <Helmet bodyAttributes={{style: 'background-color : #F7F6F9'}}/>
             <div className="form-container">
                 <div className="form-banner">
                     <img src={FormBanner} style={{width:'84vw',height:'40vh',borderRadius:'10px'}}></img>
@@ -125,6 +126,10 @@ const Formulir = () =>{
                     </form>
                 </div>
             </div>
+            </div>
+            :window.location.replace('/login')
+            }
+        
         </div>
     )
 }

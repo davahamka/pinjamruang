@@ -5,6 +5,7 @@ import InputComp from '../components/InputComp';
 import '../components/Login.scss';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import Helmet from 'react-helmet';
 
 const Login = () => {
     const[nim,setNIM] = useState('');
@@ -34,6 +35,18 @@ const Login = () => {
     }
         return ( 
             <div>
+                {localStorage.getItem('token')?window.history.back()
+                :
+                <div>
+                    <Helmet
+                style={[{
+                    "cssText": `
+                        body {
+                            overflow: hidden;
+                        }
+                    `
+                }]}
+            />
                 <div className="login-left">
                     <div className="login-container">
                         logo
@@ -46,11 +59,11 @@ const Login = () => {
                                 <form>
                                     <label>NIM</label>
                                     <div>
-                                        <input type="text" className="my-input" placeholder='Isi NIM' onChange={data=>setNIM(data.target.value)}></input>
+                                        <input type="text" className="my-input" placeholder='Isi NIM' style={{marginBottom:30}} onChange={data=>setNIM(data.target.value)}></input>
                                     </div>
                                     <label>Password</label>
                                     <div>
-                                        <input type="password" className="my-input" placeholder='Isi Password' onChange={data=>setPassword(data.target.value)}></input>
+                                        <input type="password" className="my-input" placeholder='Isi Password' style={{marginBottom:20}} onChange={data=>setPassword(data.target.value)}></input>
                                     </div>
                                     <div style={{marginTop:20}}>
                                         <Button text="Login" type="submit" diTekan={(e)=>submitLogin(e)}/>
@@ -58,13 +71,16 @@ const Login = () => {
                                 </form>
                             </div>
                         </div>
-                        <div className="center-view">
+                        <div className="center-view" style={{marginTop:20}}>
                                 Copyright © RoadtoBCC. All Rights Reserved.
                             </div>
                     </div>
                 </div>
                 <div className="login-right">
                 </div>
+                </div>
+                }
+                
             </div>
          );
 }

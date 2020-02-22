@@ -16,9 +16,7 @@ const User = () => {
             <Topbar view="user" title="Events"/>
             </div>
             :
-            <div>
-            <Login />
-            </div>}
+            window.location.replace('/login')}
             </div>
          );
 }

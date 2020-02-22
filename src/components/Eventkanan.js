@@ -2,6 +2,7 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalendarCheck, faBuilding } from '@fortawesome/free-solid-svg-icons';
 
+
 const Eventkanan = () =>{
     return(
         <div>
