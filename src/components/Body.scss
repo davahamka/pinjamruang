@@ -316,3 +316,34 @@
     box-sizing: border-box;
     border-radius: 14px;
 }
+
+
+.adminorder-body{
+    position: absolute;
+    margin-left: 12vw;
+    width:88vw;
+    height: 100vh;
+    background-color: #F5F7FB;
+    .tab-ruang{
+        position: absolute;
+        width: 70vw;
+        margin:30px 0px 0px 0px;
+        border-radius: 2px;
+        padding: 30px 0px 0px 30px;
+        background: #FFFFFF;
+        .left-side{
+            margin-top: 30px;
+            width: 400px;
+        }
+        .form-box{
+
+        }
+
+    }
+    .admincard-title{
+        margin-top: 80px;
+        margin-bottom:30px;
+        font-weight: 700;
+        margin-left:60px;
+    }
+}

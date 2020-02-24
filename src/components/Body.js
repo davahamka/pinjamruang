@@ -9,6 +9,7 @@ import Activitytab from './Activitytab';
 import Gedung from './Gedung';
 import Admin from './Admin';
 import Admincard from './Admincard';
+import Orderan from './Orderan';
 
 const Body = (props) => {
 
@@ -45,6 +46,10 @@ const Body = (props) => {
                 )
                 break;
             case "adminhome":
+                return(
+                    <Admincard />
+                )
+            case "adminorder":
                 return(
                     <Admincard />
                 )
@@ -102,7 +107,13 @@ const Body = (props) => {
                     <div>
                         <Admin view="'home" data={data} />
                     </div>
-                )
+                );
+            case "adminorder":
+                return(
+                    <div>
+                        <Orderan data={data} />
+                    </div>
+                );
 
         }
     }

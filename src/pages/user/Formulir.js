@@ -68,21 +68,19 @@ const Formulir = () =>{
                 <Helmet bodyAttributes={{style: 'background-color : #F7F6F9'}}/>
             <div className="form-container">
                 <div className="form-banner">
-                    <img src={FormBanner} style={{width:'84vw',height:'40vh',borderRadius:'10px'}}></img>
+                    <img src={FormBanner} style={{borderRadius:'10px',width:1080,height:240,objectFit:'cover'}}></img>
                 </div>
-                <div>
+                {/* <div>
                     Stepper
-                </div>
+                </div> */}
                 <div className="form-a">
                     <form>
-                        
-                    Jenis
-                        <div className="form-check">
-                            <br/>
-                            <input type="radio" className="form-check-input" id="Kelas" name="jenis" value="Kelas"></input>
-                            <label class="form-check-label" for="Kelas">Kelas</label>
-                            <input type="radio" className="form-check-input" id="Nonkelas" name="jenis" value="Non-kelas"></input>
-                            <label class="form-check-label" for="Nonkelas">Non-kelas</label>
+                    <div className="form-b">Jenis</div>
+                        <div className="pil-jenis">
+                            <input type="radio" className="form-check-input-jenis" id="Kelas" name="jenis" value="Kelas"></input>
+                            <label class="form-check-label" for="Kelas">Kelas<div>Peminjaman untuk kegiatan akademik</div></label>
+                            <input type="radio" className="form-check-input-jenis" id="Nonkelas" name="jenis" value="Non-kelas"></input>
+                            <label class="form-check-label" for="Nonkelas">Non-kelas<div>Peminjaman untuk kegiatan non akademik</div></label>
                         </div>
                         <div className="form-t">
                             <div>
@@ -119,9 +117,28 @@ const Formulir = () =>{
                                     </div>
                             </div>
                             <div class="form-group">
-    <label for="exampleFormControlTextarea1">Keterangan</label>
-    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-  </div>
+                                <label for="exampleFormControlTextarea1">Keterangan</label>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                            </div>
+                            <div className="form-group">
+                                <label>Gedung</label>
+                                <select class="form-control">
+                                    {dataKu.organisasi.map(x=><option>{x}</option>)}
+                                </select>
+                            </div>
+                            <div className="form-group">
+                                <label>Ruang</label>
+                                <select class="form-control">
+                                    {dataKu.organisasi.map(x=><option>{x}</option>)}
+                                </select>
+                            </div>
+                            <div className="form-group">
+                                <label>Kelas</label>
+                                <select class="form-control">
+                                    {dataKu.organisasi.map(x=><option>{x}</option>)}
+                                </select>
+                            </div>
+                            <button className='btn btn-primary' style={{marginTop:24}}>Submit</button>
                         </div>
                     </form>
                 </div>

@@ -11,27 +11,23 @@ const Login = () => {
     const[nim,setNIM] = useState('');
     const[password,setPassword] = useState('');
 
-    const submitLogin = (e) =>{
+    const submitLogin = async (e) =>{
         console.log('d')
-        e.preventDefault()      
-        axios.post('http://peminjaman.herokuapp.com/user/login', { nim, password })
-        .then(res => {
-                console.log('log')
-                localStorage.setItem('token', res.data.token);
-                console.log(res)
-                window.location.replace('/')
-            })
-            .catch(err => {
-                // console.log(err.response.status);
-                switch(err.response.status){
-                    case 401:
-                        Swal.fire('Username/Password salah','','error');
-                        break;
-                        default:console.log("Berhasil");
-                }
-                
-                
-            }) 
+        e.preventDefault()  
+        try{
+            let hasil = await axios.post('http://peminjaman.herokuapp.com/user/login', { nim, password });
+            localStorage.setItem('token',hasil.data.token);
+            window.location.replace('/');
+        }    
+        catch(err){
+            switch(err.response.status){
+                case 401:
+                    Swal.fire('Username/Password salah','','error');
+                    break;
+                    default:console.log("Berhasil");
+            }
+        }
+       
     }
         return ( 
             <div>
@@ -43,6 +39,11 @@ const Login = () => {
                     "cssText": `
                         body {
                             overflow: hidden;
+                        }
+                        input[type=number]::-webkit-inner-spin-button, 
+                        input[type=number]::-webkit-outer-spin-button { 
+                            -webkit-appearance: none; 
+                            margin: 0; 
                         }
                     `
                 }]}
@@ -59,7 +60,7 @@ const Login = () => {
                                 <form>
                                     <label>NIM</label>
                                     <div>
-                                        <input type="text" className="my-input" placeholder='Isi NIM' style={{marginBottom:30}} onChange={data=>setNIM(data.target.value)}></input>
+                                        <input type="number" className="my-input" placeholder='Isi NIM' style={{marginBottom:30}} required onChange={data=>setNIM(data.target.value)}></input>
                                     </div>
                                     <label>Password</label>
                                     <div>
