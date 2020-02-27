@@ -39,7 +39,6 @@ const Body = (props) => {
         }
     },[])
 
-    console.log(gedung)
 
 
 

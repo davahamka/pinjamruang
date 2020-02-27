@@ -19,7 +19,10 @@ import ViewColumn from '@material-ui/icons/ViewColumn';
 
 const Admin = (props)=>{
     let data = props;
-    let[gedung,setGedung] = useState();
+    let dataku = props.data;
+    console.log(dataku)
+    
+    let[gedung,setGedung] = useState(data.gedung[0]);
     let[lantai,setLantai] = useState();
     const[ayo,setAyo] = useState({
         columns: [
@@ -76,6 +79,17 @@ const Admin = (props)=>{
         ThirdStateCheck: forwardRef((props, ref) => <Remove {...props} ref={ref} />),
         ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
       };
+      function pilihGedung(){
+        return(
+        data.gedung.map(x => <option value={x}>{x}</option>)
+        )
+      }
+      function handleGedung(e){
+        console.log(e)
+      }
+      function handleSubmit(e){
+        console.log(e)
+      }
     return(
         <div>
             <div className="tab-ruang">
@@ -86,8 +100,9 @@ const Admin = (props)=>{
                             <div>
                                 <label>Gedung</label>
                                     <div className="form-group">
-                                        <select class="form-control form-control-sm">
-                                            {data.gedung.map(x => <option>{x}</option>)}
+                                        <select class="form-control form-control-sm"onChange={(e)=>setGedung(e.target.value)} value={null}>
+                                            <option value="N/A"></option>
+                                            {pilihGedung()}
                                         </select>
                                     </div>
                             </div>
@@ -106,6 +121,7 @@ const Admin = (props)=>{
                                     </div>
                             </div>
                         </div>
+                        <button className="btn btn-primary" onClick={handleSubmit()}>Submit</button>
                     </form>
                 </div>
             </div>
