@@ -1,17 +1,19 @@
-import React from 'react';
+import React, { useEffect,useState } from 'react';
+import Axios from 'axios';
 
 import Boxgedung from './Boxgedung';
 
 
-const Information = () =>{
+const Information = (props) =>{
+    let gedung = props.gedung
     return(
         <div>
-            <Boxgedung nama="A" status="Available"/>
-            <Boxgedung nama="B" status="Available"/>
-            <Boxgedung nama="C" status="Available"/>
-            <Boxgedung nama="D" status="Available"/>
-            <Boxgedung nama="E" status="Not Available"/>
-            <Boxgedung nama="F" status="Available"/>
+            {gedung.map(x=>{
+                return(
+                <Boxgedung nama={x} status="Available" data={props.data}/>
+                )
+            })}
+            
             
         </div>
     )

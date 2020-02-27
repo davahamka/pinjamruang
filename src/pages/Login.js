@@ -1,23 +1,29 @@
 import React,{useState} from 'react';
 
 import Button from '../components/Button';
-import InputComp from '../components/InputComp';
+import logo from '../Logo-PR.png';
 import '../components/Login.scss';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import Helmet from 'react-helmet';
+import jwt from 'jsonwebtoken';
 
 const Login = () => {
     const[nim,setNIM] = useState('');
     const[password,setPassword] = useState('');
 
     const submitLogin = async (e) =>{
-        console.log('d')
         e.preventDefault()  
         try{
-            let hasil = await axios.post('http://peminjaman.herokuapp.com/user/login', { nim, password });
+            let hasil = await axios.post('http://api-peminjaman.herokuapp.com/user/login', { nim, password });
             localStorage.setItem('token',hasil.data.token);
-            window.location.replace('/');
+            var decoded = jwt.decode(hasil.data.token);
+            let isAdmin = decoded.is_admin;
+            if(isAdmin){
+                window.location.replace('/admin');
+            }else{
+                window.location.replace('/');
+            }
         }    
         catch(err){
             switch(err.response.status){
@@ -50,7 +56,7 @@ const Login = () => {
             />
                 <div className="login-left">
                     <div className="login-container">
-                        logo
+                        <img src={logo} style={{width:60}}/>
                         <div className="login-form">
                             <div className="form-title">
                                 <h1>Login</h1>

@@ -1,29 +1,53 @@
-import React from 'react';
+import React,{useState} from 'react';
 
 const Gedung = (props) =>{
-    // console.log(gedung);
-    let dataGedung = props.data.dataGedung;
-    console.log(dataGedung)
+
+    let lantai = [];
+    let ruang = [];
+    let namaGedung = props.data.dataGedung.nama
+    let dataGedung = props.data.dataGedung.data;
+    function getLantai(){
+        let lan=[];
+        let ru=[];
+        let lantaiSortedFixed=[];
+        let ruangSortedFixed=[];
+        for(let i=0;i<dataGedung.length;i++){
+            if(dataGedung[i].gedung===namaGedung){
+                lan.push(dataGedung[i].lantai)
+                ru.push(dataGedung[i].room_name)
+            }
+            lantaiSortedFixed = [...new Set(lan)];
+            lantaiSortedFixed.sort();
+            ruangSortedFixed = [...new Set(ru)];
+            ruangSortedFixed.sort();
+            
+        }
+        lantai = lantaiSortedFixed
+        ruang = ruangSortedFixed
+    }
+    getLantai();
     return(
         <div className="gedung">
             <div className="left-side" >
                 <div>Gedung</div>
-    <div className="title">{dataGedung.nama}</div>
+    <div className="title">{namaGedung}</div>
                 <div className="kecil">6 AVAILABLE ROOM</div>
                 <div className="lantai">
-                    <li><b>LANTAI 1</b></li>
-                    <li>LANTAI 2</li>
+                    {lantai.map(x=><li>LANTAI {x}</li>)}
                 </div>
             </div>
             <div className="right-side">
-                <div className="gedung-card">
+                {ruang.map(x=>
+                    <div className="gedung-card">
                     <div>
                         RUANG
                     </div>
                     <div className="ruang">
-                        A1.1
+                        {x}
                     </div>
                 </div>
+                    )}
+                
             </div>
         </div>
     )

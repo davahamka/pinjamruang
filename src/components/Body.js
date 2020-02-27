@@ -1,4 +1,5 @@
-import React,{useState} from 'react';
+import React,{useState, useEffect} from 'react';
+import Axios from 'axios';
 
 import './Body.scss';
 import Eventcard from './Eventcard';
@@ -9,15 +10,44 @@ import Activitytab from './Activitytab';
 import Gedung from './Gedung';
 import Admin from './Admin';
 import Admincard from './Admincard';
+import Adminordercard from './Adminordercard';
 import Orderan from './Orderan';
 
 const Body = (props) => {
 
-    let data = {
-        'gedung' : ['A','B','C','D','E','F'],
-        'lantai' : ['1','2'],
-        'ruang' : ['A1.1']
-    }
+    let[gedung,setGedung] = useState([]);
+    let[data,setData] = useState([]);
+
+    useEffect( ()=>{
+        try{
+            async function fetchApi(){
+            let hasil = await Axios.get(`https://api-peminjaman.herokuapp.com/room`);
+            let dataku = hasil.data.data;
+            setData(dataku)
+            let gedungSorted =[];
+            let da =[];
+            for(let i=0;i<dataku.length;i++){
+                gedungSorted.push(dataku[i].gedung);
+            }
+            let gedungSortedFix = [...new Set(gedungSorted)];
+            gedungSortedFix.sort();
+            setGedung(gedungSortedFix);}
+            fetchApi()
+
+        }catch(e){
+            console.log(e);
+        }
+    },[])
+
+    console.log(gedung)
+
+
+
+    // let data = {
+    //     'gedung' : ['A','B','C','D','E','F'],
+    //     'lantai' : ['1','2'],
+    //     'ruang' : ['A1.1']
+    // }
 
     const bodyView = props.view;
     function showMiniNav(){
@@ -51,7 +81,7 @@ const Body = (props) => {
                 )
             case "adminorder":
                 return(
-                    <Admincard />
+                    <Adminordercard />
                 )
             default:
                 return(
@@ -77,7 +107,7 @@ const Body = (props) => {
             case "information":
                 return(
                     <div>
-                        <Information />    
+                        <Information gedung={gedung} data={data}/>    
                     </div>
                 );
                 break;
@@ -105,7 +135,7 @@ const Body = (props) => {
             case "adminhome":
                 return(
                     <div>
-                        <Admin view="'home" data={data} />
+                        <Admin view="home" gedung={gedung} data={data} />
                     </div>
                 );
             case "adminorder":

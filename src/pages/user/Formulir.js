@@ -1,14 +1,11 @@
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
+import jwt from 'jsonwebtoken';
+import Axios from 'axios';
 
 import "../../components/Form.scss";
 import FormBanner from '../../form-banner.JPG';
 import Dateinline from '../../components/Dateinline';
 import { makeStyles } from '@material-ui/core/styles';
-import Stepper from '@material-ui/core/Stepper';
-import Step from '@material-ui/core/Step';
-import StepLabel from '@material-ui/core/StepLabel';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
 
 
 import Helmet from 'react-helmet';
@@ -37,18 +34,46 @@ const useStyles = makeStyles(theme => ({
   }
 
 const Formulir = () =>{
+
+    let [nama,setNama] = useState('')
+    let [gedung,setGedung] = useState([]);
+    let [kegiatan,setKegiatan] = useState('')
+    let[data,setData] = useState({});
+    const classes = useStyles();
+    const [activeStep, setActiveStep] = React.useState(0);
+    const steps = getSteps();
+
+    let token = localStorage.getItem('token')
+    let decoded = jwt.decode(token);
+    let id = decoded._id;
+    let nim = decoded.nim;
+
+    useEffect(async() => {
+        try{
+            let dataku = await Axios.get(`http://api-peminjaman.herokuapp.com/user/${id}`)
+            setNama(dataku.data.data.name)
+            let dataku2 = await Axios.get(`https://api-peminjaman.herokuapp.com/room`)
+            dataku2 = dataku2.data.data;
+            let gedungSorted =[];
+            for(let i=0;i<dataku2.length;i++){
+                gedungSorted.push(dataku2[i].gedung);
+            }
+            let gedungSortedFix = [...new Set(gedungSorted)];
+            gedungSortedFix.sort();
+            setGedung(gedungSortedFix);
+        }catch(e){
+
+        }
+    }, [])
+    
+    console.log(gedung)
+
     let dataKu = {
         'organisasi' : ['BEM','DPM','RAION','BCC','Eksternal'],
         'jam' : ['07.00 - 07.50','07.50 - 08.40','08.40 - 09.30', '09.30 - 10.20', '10.20 - 11.10', '11.10 - 12.00', '12.00 - 12.50', '12.50-13.40', '13.40 - 14.30', 
                 '14.30 - 15.20','15.20 - 16.10','16.10 - 17.00','']
     }
-    let [nama,setNama] = useState('Dava')
-    let [nim,setNIM] = useState('195150200111032')
-    let [kegiatan,setKegiatan] = useState('')
-    let[data,setData] = useState({});
-    const classes = useStyles();
-  const [activeStep, setActiveStep] = React.useState(0);
-  const steps = getSteps();
+    
 
   const handleNext = () => {
     setActiveStep(prevActiveStep => prevActiveStep + 1);
@@ -123,17 +148,17 @@ const Formulir = () =>{
                             <div className="form-group">
                                 <label>Gedung</label>
                                 <select class="form-control">
-                                    {dataKu.organisasi.map(x=><option>{x}</option>)}
+                                    {gedung.map(x=><option>{x}</option>)}
                                 </select>
                             </div>
                             <div className="form-group">
-                                <label>Ruang</label>
+                                <label>Lantai</label>
                                 <select class="form-control">
                                     {dataKu.organisasi.map(x=><option>{x}</option>)}
                                 </select>
                             </div>
                             <div className="form-group">
-                                <label>Kelas</label>
+                                <label>Ruang</label>
                                 <select class="form-control">
                                     {dataKu.organisasi.map(x=><option>{x}</option>)}
                                 </select>

@@ -1,12 +1,13 @@
 import React from 'react';
+import jwt from 'jsonwebtoken';
 
 import Topbar from '../components/Topbar';
 import Sidebar from '../components/Sidebar';
 import Body from '../components/Body';
-import Login from './Login';
 
 
 const User = () => {
+        
         return ( 
             <div>
                 {localStorage.getItem('token')?
