@@ -17,13 +17,17 @@ const Body = (props) => {
 
     let[gedung,setGedung] = useState([]);
     let[data,setData] = useState([]);
+    let[dataOrderan,setDataOrderan] = useState({})
 
     useEffect( ()=>{
         try{
             async function fetchApi(){
             let hasil = await Axios.get(`https://api-peminjaman.herokuapp.com/room`);
+            let hasil2 = await Axios.get(`https://api-peminjaman.herokuapp.com/loan`);
             let dataku = hasil.data.data;
+            let dataku2 = hasil2.data;
             setData(dataku)
+            setDataOrderan(dataku2)
             let gedungSorted =[];
             let da =[];
             for(let i=0;i<dataku.length;i++){
@@ -37,7 +41,8 @@ const Body = (props) => {
         }catch(e){
             console.log(e);
         }
-    },[])
+    },[10])
+
 
 
 
@@ -113,7 +118,7 @@ const Body = (props) => {
             case "activity":
                 return(
                     <div>
-                        <Activity view="proses"/>
+                        <Activity view="proses" dataOrder={dataOrderan}/>
                     </div>
                 );
                 break;
@@ -134,13 +139,13 @@ const Body = (props) => {
             case "adminhome":
                 return(
                     <div>
-                        <Admin view="home" gedung={gedung} data={data} />
+                        <Admin view="home" gedung={gedung} data={data} dataOrderan={dataOrderan} />
                     </div>
                 );
             case "adminorder":
                 return(
                     <div>
-                        <Orderan data={data} />
+                        <Orderan data={data} orderan={dataOrderan} />
                     </div>
                 );
 

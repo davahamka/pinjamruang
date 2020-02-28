@@ -51,7 +51,12 @@ const Formulir = () =>{
 
     let [nama,setNama] = useState('');
     let [gedung,setGedung] = useState([]);
-    let[document,setDocument] = useState('');
+    let [gedungDetail,setDetailGedung] = useState([])
+    let [pilGedung,setPilGedung] = useState('');
+    let [pilRuang,setPilRuang] =useState('');
+    let pilRuangID="";
+    let [ruang,setRuang] = useState([])
+    let[document,setDocument] = useState(null);
     let [kegiatan,setKegiatan] = useState('')
     let [organisasi,setOrganisasi] = useState('')
     let [keterangan,setKeterangan] = useState('')
@@ -89,28 +94,50 @@ const Formulir = () =>{
             let dataku2 = await Axios.get(`https://api-peminjaman.herokuapp.com/room`)
             dataku2 = dataku2.data.data;
             let gedungSorted =[];
+            let ruangSorted =[];
+            let gedungDetailSorted =[];
             for(let i=0;i<dataku2.length;i++){
                 gedungSorted.push(dataku2[i].gedung);
+                ruangSorted.push(dataku2[i].room_name);
+                gedungDetailSorted.push(dataku2[i]);
+                
             }
             let gedungSortedFix = [...new Set(gedungSorted)];
+            let ruangSortedFix = [...new Set(ruangSorted)];
+            let gedungDetailSortedFix = [...new Set(gedungDetailSorted)];
             gedungSortedFix.sort();
+            ruangSortedFix.sort();
+            gedungDetailSortedFix.sort();
             setGedung(gedungSortedFix);
+            setRuang(ruangSortedFix)
+            setDetailGedung(gedungDetailSortedFix)
+
         }catch(e){
 
         }
     }, [])
-    
-    console.log(gedung)
-
+        
+    let pilihanruang =[];
+    for(let i=0;i<ruang.length;i++){
+        if(ruang[i].includes(pilGedung)){
+            pilihanruang.push(ruang[i])
+        }
+    }
+    for(let i=0;i<gedungDetail.length;i++){
+        if(gedungDetail[i].room_name===pilRuang){
+            pilRuangID=gedungDetail[i]._id
+        }
+    }
     let dataKu = {
         'organisasi' : ['BEM','DPM','RAION','BCC','Eksternal'],
         'jam' : ['07:00-07:50','07:50-08:40','08:40-09:30', '09:30-10:20', '10:20-11:10', '11:10-12:00', '12:00-12:50', '12:50-13:40', '13:40-14:30', 
                 '14:30-15:20','15:20-16:10','16:10-17:00']
     }
-    let rooms_id = '5e55697267b2cb3a9c2455a2';
+    let rooms_id = pilRuangID;
 
     let config = {
-        headers : { Authorization: `Bearer ${localStorage.getItem('token')}`}
+        headers : { 'Authorization': `Bearer ${localStorage.getItem('token')}`,
+        'Content-Type': 'multipart/form-data'},
     }
 
     let HandleSelectFile = (e) => {
@@ -121,11 +148,22 @@ const Formulir = () =>{
 
     async function handleSubmit(){
         try{
-            const data = new FormData();
-            data.append('file', document);
-            console.log(data)
-            let hasil = await Axios.post('https://api-peminjaman.herokuapp.com/loan', {user_id,rooms_id, start_time, end_time, data},config)
-            console.log(hasil)
+            const yo = JSON.stringify(document)
+            let blob = new Blob([yo],{
+                type: 'application/pdf'
+            })
+            let formData = new FormData();
+            formData.append('user_id',user_id);
+            formData.append('rooms_id',rooms_id);
+            formData.append('start_time',start_time)
+            formData.append('end_time',end_time)
+            formData.append('document', blob);
+            console.log(formData.getAll('user_id'));
+            let hasil = await Axios.post('https://api-peminjaman.herokuapp.com/loan', formData,config)
+            switch(hasil.status){
+                case 200:
+                    window.location.replace('/form/finish')
+            }
         }catch(err){
             console.log(err)
         }
@@ -197,7 +235,6 @@ const Formulir = () =>{
             />
                 </MuiPickersUtilsProvider>
                 
-            {console.log(dateAwal)}
             
             </div>
                                     <div style={{width:160,marginTop:10}}>
@@ -206,10 +243,7 @@ const Formulir = () =>{
                                         {dataKu.jam.map(x=><option value={x}>{x}</option>)}
                                         </select>
                                     </div>
-                                {console.log(ambilJam)}
-                                {console.log(tanggal)}
-                                {console.log(jamawal)}
-                                {console.log(jamakhir)}
+                               
                             </div>
                             <div class="form-group">
                                 <label for="exampleFormControlTextarea1">Keterangan</label>
@@ -217,31 +251,27 @@ const Formulir = () =>{
                             </div>
                             <div className="form-group">
                                 <label>Gedung</label>
-                                <select class="form-control">
-                                    {gedung.map(x=><option>{x}</option>)}
+                                <select class="form-control" onChange={(e)=>setPilGedung(e.target.value)}>
+                                    <option value=""></option>
+                                    {gedung.map(x=><option value={x}>{x}</option>)}
                                 </select>
                             </div>
-                            <div className="form-group">
-                                <label>Lantai</label>
-                                <select class="form-control">
-                                    {dataKu.organisasi.map(x=><option>{x}</option>)}
-                                </select>
-                            </div>
-                            <div className="form-group">
+                            <div className="form-group" onChange={(e)=>setPilRuang(e.target.value)}>
                                 <label>Ruang</label>
                                 <select class="form-control">
-                                    {dataKu.organisasi.map(x=><option>{x}</option>)}
+                                <option value=""></option>
+                                    {pilihanruang.map(x=><option>{x}</option>)}
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label>Upload berkas PDF</label>
-                                <input type="file" class="form-control-file" name="" id="exampleFormControlFile1" accept=".pdf" onChange={e=>HandleSelectFile(e)}/>
+                                <input type="file" class="form-control-file" name="file" id="exampleFormControlFile1" accept=".pdf" onChange={e=>HandleSelectFile(e)}/>
                             </div>
-                            {console.log(document)}
                             <button className='btn btn-primary' style={{marginTop:24}} onClick={()=>handleSubmit()}>Submit</button>
                         </div>
                 </div>
             </div>
+            
             </div>
             :window.location.replace('/login')
             }

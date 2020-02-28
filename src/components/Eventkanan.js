@@ -3,12 +3,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalendarCheck, faBuilding } from '@fortawesome/free-solid-svg-icons';
 
 
-const Eventkanan = () =>{
+const Eventkanan = (props) =>{
     return(
         <div>
                                 <div>
                                     <div className="judul">
-                                        Workshop BCC
+                                        {props.judul}
                                     </div>
                                     <div className="jamtanggal">
                                         <div>

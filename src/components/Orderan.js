@@ -1,5 +1,6 @@
 import React,{useState, useEffect, forwardRef} from 'react';
 import MaterialTable from 'material-table';
+import Axios from 'axios';
 
 import AddBox from '@material-ui/icons/AddBox';
 import ArrowDownward from '@material-ui/icons/ArrowDownward';
@@ -18,40 +19,30 @@ import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
 
 
-const Orderan = () => {
+const Orderan = (props) => {
+
+ 
+    let data = props.data.data;
+    let dataOrderan = [];
+    dataOrderan.push(props.orderan.data)
+    let yoi = [{id:props.orderan.data,rooms_id:[129,322],g:'a',f:'b',c:'b',e:'b'},{id:'b'}];
+    console.log(yoi)
+    console.log(dataOrderan)
+
+
     const[ayo,setAyo] = useState({
         columns: [
-            { title: 'ID', field: 'name' },
-            { title: 'Tanggal Order', field: 'surname' },
-            { title: 'Name', field: 'name'},
-            {},
-            { title: 'Ruang', field: 'Tanggal'}
+            { title: 'ID', field: '_id' },
+            { title: 'Tanggal Order', field: 'rooms_id' },
+            { title: 'Nama', field: 'name'},
+            { title: 'Ruang', field: 'ruang'},
+            { title: 'Tanggal Awal', field: ''},
+            { title: 'Tanggal Selesai', field: 'end_time'},
+            { title : 'Dokumen', field : 'document'},
           ],
-          data: [
-            { name: 'Mehmet', surname: 'Baran', birthYear: 1987, birthCity: 63 },
-            {
-              name: 'Zerya Betül',
-              surname: 'Baran',
-              birthYear: 2017,
-              birthCity: 34,
-            },{
-              name: 'Zerya Betül',
-              surname: 'Baran',
-              birthYear: 2017,
-              birthCity: 34,
-            },{
-              name: 'Zerya Betül',
-              surname: 'Baran',
-              birthYear: 2017,
-              birthCity: 34,
-            },{
-              name: 'Zerya Betül',
-              surname: 'Baran',
-              birthYear: 2017,
-              birthCity: 34,
-            }
-          ],
+          data: dataOrderan,
     })
+    
     const tableIcons = {
         Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
         Check: forwardRef((props, ref) => <Check {...props} ref={ref} />),
