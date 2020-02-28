@@ -7,7 +7,7 @@ const Boxactivity = (props) =>{
         <div>
              <div className="box-activity">
                 <div>
-                    #{props.id}
+                    #{props.id.substr(9)}
                 </div>
                 <div className="judul">
                     <b>{props.judul}</b>
@@ -20,7 +20,7 @@ const Boxactivity = (props) =>{
                     <FontAwesomeIcon icon={faBuilding} /> {props.ruang}
                 </div>
                 <div className="status">
-                    <div className="status-gedung status-grey">
+                    <div className={`status-gedung status-${props.status}`}>
                         {props.status}
                     </div>
                 </div>

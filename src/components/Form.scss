@@ -11,7 +11,6 @@
 }
 .form-a{
     margin-top: 60px;
-    margin-left: 20px;
     margin-right: 20px;
     font-family: 'Circular Std Book';
     background: white;
@@ -67,4 +66,17 @@
 .form-date{
     display: flex;
     justify-content: space-around;
+}
+
+.formfinish-tulisan{
+    padding: 80px;
+    text-align: center;
+    .judul{
+        font-size: 18pt;
+        font-weight: 700;
+    }
+    .text{
+        font-size: 12pt;
+        margin-top: 20px;
+    }
 }

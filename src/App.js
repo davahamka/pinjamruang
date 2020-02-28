@@ -15,6 +15,7 @@ import Formulir from './pages/user/Formulir';
 import Activityall from './pages/user/Activityall'
 import GedungAdmin from './pages/admin/Gedung';
 import Gedungoy from './components/Gedung';
+import FormulirFinish from './pages/user/FormulirFinish';
 
 class App extends Component {
   constructor(props) {
@@ -33,7 +34,8 @@ class App extends Component {
           {/* <Route exact path="/info/gedung/:handle" component={Gedungoy} /> */}
           <Route exact path="/activity" render={props => <Activity {...props} />} />
           <Route exact path="/activity/all" render={props => <Activityall {...props} />} />
-          <Route exact path="/form" render={props => <Formulir {...props} />} />
+          <Route exact path="/form" render={props => <Formulir {...props} />} />WW
+          <Route exact path="/form/finish" render={props => <FormulirFinish {...props} />} />
 
 
           <Route exact path="/admin" render={props => <Admin {...props} />} />
