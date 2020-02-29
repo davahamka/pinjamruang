@@ -1,8 +1,9 @@
 .user-body{
     position: absolute;
-    margin-top: 160px;
+    margin-top: 80px;
     margin-left: 12vw;
-    width:86.6vw;
+    padding-bottom: 120px;
+    width:86.9vw;
     background-color: #F5F7FB;
     .inside{
         position: relative;
@@ -64,9 +65,10 @@
 
 .information-body{
     position: absolute;
-    margin-top: 160px;
+    margin-top: 80px;
     margin-left: 12vw;
-    width:86.6vw;
+    padding-bottom: 120px;
+    width:88vw;
     background-color: #F5F7FB;
     .inside{
     }
@@ -81,9 +83,9 @@
 
 .activity-body{
     position: absolute;
-    margin-top: 160px;
+    margin-top: 80px;
     margin-left: 12vw;
-    width:86.6vw;
+    width:88vw;
     background-color: #F5F7FB;
     .inside{
     }
@@ -91,9 +93,10 @@
 
 .activityall-body{
     position: absolute;
-    margin-top: 160px;
+    margin-top: 80px;
     margin-left: 12vw;
-    width:86.6vw;
+    padding-bottom: 120px;
+    width:88vw;
     background-color: #F5F7FB;
     .inside{
     }
@@ -210,9 +213,10 @@
 
 .gedung-body{
     position: absolute;
-    margin-top: 160px;
+    margin-top: 80px;
     margin-left: 12vw;
-    width:86.6vw;
+    padding-bottom: 120px;
+    width:88vw;
     background-color: #F5F7FB;
     .inside{
         position: inline;
@@ -250,11 +254,7 @@
             font-size: 10pt;
             .gedung-card{
                 width: 700px;
-                margin-bottom: 30px;
-                padding: 30px 0px 30px 30px;
-                border-style: solid;
-                // border-color: #8F8F8F;
-                border-width: 0.5px;
+                
             }
             .ruang{
                 font-size: 16pt;
@@ -275,7 +275,7 @@
 .adminhome-body{
     position: absolute;
     margin-left: 12vw;
-    width:86.8vw;
+    width:86.7vw;
     height: 180vh;
     background-color: #F5F7FB;
     .tab-ruang{
@@ -338,13 +338,12 @@
 .adminorder-body{
     position: absolute;
     margin-left: 12vw;
-    width:88vw;
-    height: 100vh;
+    width:86.6vw;
     background-color: #F5F7FB;
     .tab-ruang{
-        position: absolute;
+        position: relative;
         width: 70vw;
-        margin:30px 0px 0px 0px;
+        margin:46px 20px 0px 0px;
         border-radius: 2px;
         padding: 30px 30px 30px 30px;
         background: #FFFFFF;
@@ -363,4 +362,112 @@
         font-weight: 700;
         margin-left:60px;
     }
+}
+.adminorderdone-body{
+    position: absolute;
+    margin-left: 12vw;
+    width:86.6vw;
+    background-color: #F5F7FB;
+    .tab-ruang{
+        position: relative;
+        width: 70vw;
+        margin:46px 20px 0px 0px;
+        border-radius: 2px;
+        padding: 30px 30px 30px 30px;
+        background: #FFFFFF;
+        .left-side{
+            margin-top: 30px;
+            width: 400px;
+        }
+        .form-box{
+
+        }
+
+    }
+    .admincard-title{
+        margin-top: 80px;
+        margin-bottom:30px;
+        font-weight: 700;
+        margin-left:60px;
+    }
+}
+.adminorderall-body{
+    position: absolute;
+    margin-left: 12vw;
+    width:86.6vw;
+    background-color: #F5F7FB;
+    .tab-ruang{
+        position: relative;
+        width: 70vw;
+        margin:46px 20px 0px 0px;
+        border-radius: 2px;
+        padding: 30px 30px 30px 30px;
+        background: #FFFFFF;
+        .left-side{
+            margin-top: 30px;
+            width: 400px;
+        }
+        .form-box{
+
+        }
+
+    }
+    .admincard-title{
+        margin-top: 80px;
+        margin-bottom:30px;
+        font-weight: 700;
+        margin-left:60px;
+    }
+}
+.admingedung-body{
+    position: absolute;
+    margin-left: 12vw;
+    width:86.6vw;
+    background-color: #F5F7FB;
+    .tab-ruang{
+        position: relative;
+        width: 48vw;
+        margin:46px 20px 0px 0px;
+        border-radius: 2px;
+        padding: 30px 30px 30px 30px;
+        background: #FFFFFF;
+        .left-side{
+            margin-top: 30px;
+            width: 400px;
+        }
+        .form-box{
+
+        }
+
+    }
+    .admincard-title{
+        margin-top: 80px;
+        margin-bottom:30px;
+        font-weight: 700;
+        margin-left:60px;
+    }
+}
+
+.flexx{
+    display: flex;
+    margin-bottom: 30px;
+    padding: 30px 0px 30px 30px;
+    border-style: solid;
+    // border-color: #8F8F8F;
+    border-width: 0.5px;
+    flex-direction: row;
+}
+.flexu{
+    display: flex;
+    margin-bottom: 30px;
+    padding: 30px 0px 30px 30px;
+    flex-direction: row;
+}
+
+.jamjaman{
+    margin-left: 40px;
+    margin-bottom: -30px;
+}
+.jamku{
+    margin-bottom: 10px;
 }

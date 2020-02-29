@@ -29,7 +29,7 @@ const Sidebar = (props) => {
             activeInfo = '#000'
         }else if(locationNow==='/admin'){
             activeAdminHome = '#000';
-        }else if(locationNow==='/admin/order'){
+        }else if(locationNow.includes('/admin/order')){
             activeAdminOrderan = '#000';
         }else if(locationNow==='/admin/gedung'){
             activeAdminRuangan = '#000';

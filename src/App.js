@@ -1,5 +1,4 @@
-import React,{Component} from 'react';
-import logo from './logo.svg';
+import React,{Component} from 'react'
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import './App.css';
 
@@ -13,8 +12,10 @@ import Activity from './pages/user/Activity';
 import Gedung from './pages/user/Gedung';
 import Formulir from './pages/user/Formulir';
 import Activityall from './pages/user/Activityall'
-import GedungAdmin from './pages/admin/Gedung';
-import Gedungoy from './components/Gedung';
+import GedungAdmin from './pages/admin/Gedung'
+import Orderdone from './pages/admin/Orderdone'
+import Orderall from './pages/admin/Orderall.js'
+
 import FormulirFinish from './pages/user/FormulirFinish';
 
 class App extends Component {
@@ -40,6 +41,8 @@ class App extends Component {
 
           <Route exact path="/admin" render={props => <Admin {...props} />} />
           <Route exact path="/admin/order" render={props => <Order {...props} />} />
+          <Route exact path="/admin/order/done" render={props => <Orderdone {...props} />} />
+          <Route exact path="/admin/order/all" render={props => <Orderall {...props} />} />
           <Route exact path="/admin/gedung" render={props => <GedungAdmin {...props} />} />
 
           <Route path="*" component={Notfound} />

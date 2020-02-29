@@ -1,4 +1,5 @@
 import React,{useState} from 'react';
+import Gedungkanancard from './Gedungkanancard';
 
 const Gedung = (props) =>{
 
@@ -36,19 +37,7 @@ const Gedung = (props) =>{
                     {lantai.map(x=><li>LANTAI {x}</li>)}
                 </div>
             </div>
-            <div className="right-side">
-                {ruang.map(x=>
-                    <div className="gedung-card">
-                    <div>
-                        RUANG
-                    </div>
-                    <div className="ruang">
-                        {x}
-                    </div>
-                </div>
-                    )}
-                
-            </div>
+           <Gedungkanancard data={ruang} selected={false}/>
         </div>
     )
 }

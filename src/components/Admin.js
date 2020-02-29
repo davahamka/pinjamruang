@@ -1,84 +1,48 @@
-import React,{useState,forwardRef} from 'react';
-import MaterialTable from 'material-table';
-
-import AddBox from '@material-ui/icons/AddBox';
-import ArrowDownward from '@material-ui/icons/ArrowDownward';
-import Check from '@material-ui/icons/Check';
-import ChevronLeft from '@material-ui/icons/ChevronLeft';
-import ChevronRight from '@material-ui/icons/ChevronRight';
-import Clear from '@material-ui/icons/Clear';
-import DeleteOutline from '@material-ui/icons/DeleteOutline';
-import Edit from '@material-ui/icons/Edit';
-import FilterList from '@material-ui/icons/FilterList';
-import FirstPage from '@material-ui/icons/FirstPage';
-import LastPage from '@material-ui/icons/LastPage';
-import Remove from '@material-ui/icons/Remove';
-import SaveAlt from '@material-ui/icons/SaveAlt';
-import Search from '@material-ui/icons/Search';
-import ViewColumn from '@material-ui/icons/ViewColumn';
+import React,{useState,useEffect} from 'react';
+import Axios from 'axios';
 
 const Admin = (props)=>{
     let data = props;
-    let dataku = props.data;
-    console.log(dataku)
-    
+    let dataku = props.dataOrderan.data;
+    // dataku = dataku.reverse()
     let[gedung,setGedung] = useState(data.gedung[0]);
     let[lantai,setLantai] = useState();
-    const[ayo,setAyo] = useState({
-        columns: [
-            { title: 'ID', field: 'name' },
-            { title: 'Surname', field: 'surname' },
-            { title: 'Birth Year', field: 'birthYear', type: 'numeric' },
-            {
-              title: 'Birth Place',
-              field: 'birthCity',
-              lookup: { 34: 'İstanbul', 63: 'Şanlıurfa' },
-            },
-          ],
-          data: [
-            { name: 'Mehmet', surname: 'Baran', birthYear: 1987, birthCity: 63 },
-            {
-              name: 'Zerya Betül',
-              surname: 'Baran',
-              birthYear: 2017,
-              birthCity: 34,
-            },{
-              name: 'Zerya Betül',
-              surname: 'Baran',
-              birthYear: 2017,
-              birthCity: 34,
-            },{
-              name: 'Zerya Betül',
-              surname: 'Baran',
-              birthYear: 2017,
-              birthCity: 34,
-            },{
-              name: 'Zerya Betül',
-              surname: 'Baran',
-              birthYear: 2017,
-              birthCity: 34,
-            }
-          ],
-    })
-    const tableIcons = {
-        Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
-        Check: forwardRef((props, ref) => <Check {...props} ref={ref} />),
-        Clear: forwardRef((props, ref) => <Clear {...props} ref={ref} />),
-        Delete: forwardRef((props, ref) => <DeleteOutline {...props} ref={ref} />),
-        DetailPanel: forwardRef((props, ref) => <ChevronRight {...props} ref={ref} />),
-        Edit: forwardRef((props, ref) => <Edit {...props} ref={ref} />),
-        Export: forwardRef((props, ref) => <SaveAlt {...props} ref={ref} />),
-        Filter: forwardRef((props, ref) => <FilterList {...props} ref={ref} />),
-        FirstPage: forwardRef((props, ref) => <FirstPage {...props} ref={ref} />),
-        LastPage: forwardRef((props, ref) => <LastPage {...props} ref={ref} />),
-        NextPage: forwardRef((props, ref) => <ChevronRight {...props} ref={ref} />),
-        PreviousPage: forwardRef((props, ref) => <ChevronLeft {...props} ref={ref} />),
-        ResetSearch: forwardRef((props, ref) => <Clear {...props} ref={ref} />),
-        Search: forwardRef((props, ref) => <Search {...props} ref={ref} />),
-        SortArrow: forwardRef((props, ref) => <ArrowDownward {...props} ref={ref} />),
-        ThirdStateCheck: forwardRef((props, ref) => <Remove {...props} ref={ref} />),
-        ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
-      };
+    let[uwu,setUwu] = useState([])
+    useEffect(() => {
+      try{
+        async function getDa(){
+          let hasil2 = await Axios.get(`https://api-peminjaman.herokuapp.com/loan`);
+          let dataku2 = hasil2.data;
+          dataku2.data.reverse()
+          for(let i=0;i<5;i++){
+            if(!dataku2.data[i].is_accepted){
+                  setUwu(prevArray => [...prevArray, dataku2.data[i]])
+                }
+              }
+          }
+          
+      getDa()
+      }catch(e){
+
+      }
+    }, [])
+    let orderanview = uwu.map(x=>{
+      let p = x.start_time.substr(0,10);
+      let l = x.start_time.substr(11,5)+"-"+x.end_time.substr(11,5);
+      return(
+            <tr>
+              <td>{x._id.substr(9)}</td>
+              <td>{x.user_id.name}</td>
+              <td>{x.rooms_id[0].room_name}</td>
+              <td>{p}</td>
+              <td>{l}</td>
+              <td>Otto</td>
+              <td>@mdo</td>
+            </tr>
+      )
+    }
+        )  
+    
       function pilihGedung(){
         return(
         data.gedung.map(x => <option value={x}>{x}</option>)
@@ -129,45 +93,22 @@ const Admin = (props)=>{
                 <div>
                 </div>
                 <div>
-                <MaterialTable
-      title="Orderan"
-      columns={ayo.columns}
-      icons={tableIcons}
-      data={ayo.data}
-      editable={{
-        onRowUpdate: (newData, oldData) =>
-          new Promise(resolve => {
-            setTimeout(() => {
-              resolve();
-              if (oldData) {
-                setAyo(prevState => {
-                  const data = [...prevState.data];
-                  data[data.indexOf(oldData)] = newData;
-                  return { ...prevState, data };
-                });
-              }
-            }, 600);
-          }),
-        onRowDelete: oldData =>
-          new Promise(resolve => {
-            setTimeout(() => {
-              resolve();
-              setAyo(prevState => {
-                const data = [...prevState.data];
-                data.splice(data.indexOf(oldData), 1);
-                return { ...prevState, data };
-              });
-            }, 600);
-          }),
-      }}
-      options={{
-        actionsColumnIndex: -1,
-        paging: false,
-        pageSize : 5,
-
-        
-      }}
-    />
+                <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Ruang</th>
+      <th scope="col">Tanggal</th>
+      <th scope="col">Jam</th>
+      <th scope="col">Kegiatan</th>
+      <th scope="col">Option</th>
+    </tr>
+  </thead>
+  <tbody>
+    {orderanview}
+  </tbody>
+</table>
                 </div>
             </div>
         </div>

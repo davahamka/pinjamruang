@@ -1,11 +1,11 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
-const Adminordercard = () =>{
+const Admingedungcard = () =>{
     return(
         <div>
             <div className="admincard-title">
-                ORDER
+                RUANGAN
             </div>
             <div className="activity-tab">
                 <ul>
@@ -18,4 +18,4 @@ const Adminordercard = () =>{
     )
 }
 
-export default Adminordercard
+export default Admingedungcard

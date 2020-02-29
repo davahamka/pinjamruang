@@ -2,11 +2,10 @@ import React,{useState,useEffect,useCallback} from 'react';
 import jwt from 'jsonwebtoken';
 import Axios from 'axios';
 import moment from 'moment';
-import {useDropzone} from 'react-dropzone'
+import Snackbar from '@material-ui/core/Snackbar';
+import ReactLoading from 'react-loading';
 
 import 'date-fns';
-import Datepicker,{registerLocale, setDefaultLocale} from 'react-datepicker';
-import id from 'date-fns/locale/id';
 import "react-datepicker/dist/react-datepicker.css";
 import {
     MuiPickersUtilsProvider,
@@ -16,10 +15,9 @@ import {
 
 import "../../components/Form.scss";
 import FormBanner from '../../form-banner.JPG';
-import Dateinline from '../../components/Dateinline';
 import { makeStyles } from '@material-ui/core/styles';
 
-
+import Alert from '@material-ui/lab/Alert';
 import Helmet from 'react-helmet';
 
 const useStyles = makeStyles(theme => ({
@@ -60,8 +58,10 @@ const Formulir = () =>{
     let [kegiatan,setKegiatan] = useState('')
     let [organisasi,setOrganisasi] = useState('')
     let [keterangan,setKeterangan] = useState('')
-
     
+    let [loading,setLoading] = useState(false)
+
+    let [valid,setValid] = useState(false)
 
     let[ambilJam,setAmbilJam] = useState('');
     let[data,setData] = useState({});
@@ -147,6 +147,10 @@ const Formulir = () =>{
     
 
     async function handleSubmit(){
+
+        if(nama && nim && kegiatan && organisasi && ambilJam && keterangan && pilGedung && pilRuang && document){
+            setValid('')
+            setLoading(true)
         try{
             const yo = JSON.stringify(document)
             let blob = new Blob([yo],{
@@ -167,6 +171,10 @@ const Formulir = () =>{
         }catch(err){
             console.log(err)
         }
+        }else{
+            setValid(true)
+        }
+        setLoading(false)
     }
 
     return(
@@ -182,6 +190,11 @@ const Formulir = () =>{
                     Stepper
                 </div> */}
                 <div className="form-a">
+                <Snackbar open={valid} autoHideDuration={6000} key="top">
+        <Alert  severity="error">
+          Cek kembali masukkan anda!
+        </Alert>
+      </Snackbar>
                     <div className="form-b">Jenis</div>
                         <div className="pil-jenis">
                             <input type="radio" className="form-check-input-jenis" id="Kelas" name="jenis" value="Kelas"></input>
@@ -267,7 +280,7 @@ const Formulir = () =>{
                                 <label>Upload berkas PDF</label>
                                 <input type="file" class="form-control-file" name="file" id="exampleFormControlFile1" accept=".pdf" onChange={e=>HandleSelectFile(e)}/>
                             </div>
-                            <button className='btn btn-primary' style={{marginTop:24}} onClick={()=>handleSubmit()}>Submit</button>
+                            <button className='btn btn-primary' style={{marginTop:24}} onClick={()=>handleSubmit()}>{loading?<div className="center-view"><ReactLoading type="spin" height="20px" width="20px" /></div>:"Login"}</button>
                         </div>
                 </div>
             </div>

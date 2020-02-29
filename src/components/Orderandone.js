@@ -19,7 +19,7 @@ import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
 
 
-const Orderan = (props) => {
+const Orderandone = (props) => {
 
  
     let data = props.data.data;
@@ -66,7 +66,7 @@ const Orderan = (props) => {
         <div>
             <div className="tab-ruang">
             <MaterialTable
-      title="Belum diverifikasi"
+      title="Sudah diverifikasi"
       columns={ayo.columns}
       icons={tableIcons}
       data={ayo.data}
@@ -107,4 +107,4 @@ const Orderan = (props) => {
     );
 }
 
-export default Orderan;
+export default Orderandone;

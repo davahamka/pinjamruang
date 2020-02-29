@@ -12,7 +12,7 @@ const Admin = () =>{
 
     return(
         <div>
-            {decoded.is_admin?
+            {localStorage.getItem('token')&&decoded.is_admin?
         <div>
         <Topbar view="admin" />
         <Body view="adminhome"/>

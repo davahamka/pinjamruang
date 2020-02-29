@@ -7,18 +7,23 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 import Helmet from 'react-helmet';
 import jwt from 'jsonwebtoken';
+import imglogin from '../img-banner.png'
+import ReactLoading from 'react-loading';
 
 const Login = () => {
     const[nim,setNIM] = useState('');
     const[password,setPassword] = useState('');
+    let [loading, setLoading] = useState(false);
 
     const submitLogin = async (e) =>{
         e.preventDefault()  
+        setLoading(true)
         try{
             let hasil = await axios.post('http://api-peminjaman.herokuapp.com/user/login', { nim, password });
             localStorage.setItem('token',hasil.data.token);
             var decoded = jwt.decode(hasil.data.token);
             let isAdmin = decoded.is_admin;
+            console.log(isAdmin)
             if(isAdmin){
                 window.location.replace('/admin');
             }else{
@@ -28,11 +33,13 @@ const Login = () => {
         catch(err){
             switch(err.response.status){
                 case 401:
-                    Swal.fire('Username/Password salah','','error');
+                    Swal.fire('Username atau Password salah','','error');
                     break;
                     default:console.log("Berhasil");
             }
         }
+        setLoading(false);
+
        
     }
         return ( 
@@ -73,7 +80,7 @@ const Login = () => {
                                         <input type="password" className="my-input" placeholder='Isi Password' style={{marginBottom:20}} onChange={data=>setPassword(data.target.value)}></input>
                                     </div>
                                     <div style={{marginTop:20}}>
-                                        <Button text="Login" type="submit" diTekan={(e)=>submitLogin(e)}/>
+                                        <Button text={loading?<div className="center-view"><ReactLoading type="spin" height="20px" width="20px" /></div>:"Login"} type="submit" diTekan={(e)=>submitLogin(e)}/>
                                     </div>
                                 </form>
                             </div>
@@ -84,6 +91,7 @@ const Login = () => {
                     </div>
                 </div>
                 <div className="login-right">
+                    <img src={imglogin} style={{width:640}}/>
                 </div>
                 </div>
                 }

@@ -18,12 +18,12 @@ const Activity = (props) =>{
         async function getDa(){
             let hasil2 = await Axios.get(`https://api-peminjaman.herokuapp.com/loan`);
             let dataku2 = hasil2.data;
+            dataku2.data.reverse()
             for(let i=0;i<dataku2.data.length;i++){
                 if(dataku2.data[i].user_id._id===myId){
                     setDataOrderanID(prevArray => [...prevArray, dataku2.data[i]])
                 }
                 }
-                dataOrderanID.reverse()
             }
             
         getDa()

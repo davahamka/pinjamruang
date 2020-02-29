@@ -12,6 +12,10 @@ import Admin from './Admin';
 import Admincard from './Admincard';
 import Adminordercard from './Adminordercard';
 import Orderan from './Orderan';
+import Orderandone from './Orderandone';
+import Orderanall from './Orderanall';
+import Admingedung from './Admingedung';
+import Admingedungcard from './Admingedungcard';
 
 const Body = (props) => {
 
@@ -87,6 +91,18 @@ const Body = (props) => {
                 return(
                     <Adminordercard />
                 )
+            case "adminorderdone":
+                return(
+                    <Adminordercard />
+                )
+            case "adminorderall":
+                return(
+                    <Adminordercard />
+                )
+            case "admingedung":
+                return(
+                    <Admingedungcard />
+                )
             default:
                 return(
                     <div>
@@ -148,6 +164,24 @@ const Body = (props) => {
                         <Orderan data={data} orderan={dataOrderan} />
                     </div>
                 );
+            case "adminorderdone":
+                return(
+                    <div>
+                        <Orderandone data={data} orderan={dataOrderan} />
+                    </div>
+                );
+            case "adminorderall":
+                return(
+                    <div>
+                        <Orderanall data={data} orderan={dataOrderan} />
+                    </div>
+                );
+                case "admingedung":
+                    return(
+                        <div>
+                            <Admingedung data={data} orderan={dataOrderan} />
+                        </div>
+                    );
 
         }
     }
