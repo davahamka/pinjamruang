@@ -280,7 +280,7 @@ const Formulir = () =>{
                                 <label>Upload berkas PDF</label>
                                 <input type="file" class="form-control-file" name="file" id="exampleFormControlFile1" accept=".pdf" onChange={e=>HandleSelectFile(e)}/>
                             </div>
-                            <button className='btn btn-primary' style={{marginTop:24}} onClick={()=>handleSubmit()}>{loading?<div className="center-view"><ReactLoading type="spin" height="20px" width="20px" /></div>:"Login"}</button>
+                            <button className='btn btn-primary' style={{marginTop:24}} onClick={()=>handleSubmit()}>{loading?<div className="center-view"><ReactLoading type="spin" height="20px" width="20px" /></div>:"Submit"}</button>
                         </div>
                 </div>
             </div>

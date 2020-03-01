@@ -27,7 +27,7 @@ const Orderanall = (props) => {
     dataOrderan.push(props.orderan.data)
     let yoi = [{id:props.orderan.data,rooms_id:[129,322],g:'a',f:'b',c:'b',e:'b'},{id:'b'}];
     console.log(yoi)
-    console.log(dataOrderan)
+    console.log(dataOrderan[0])
 
 
     const[ayo,setAyo] = useState({
@@ -40,8 +40,19 @@ const Orderanall = (props) => {
             { title: 'Tanggal Selesai', field: 'end_time'},
             { title : 'Dokumen', field : 'document'},
           ],
-          data: yoi,
+          data: dataOrderan[0],
     })
+
+    const columns = [
+      { title: 'ID', field: '_id' },
+            { title: 'Tanggal Order', field: 'rooms_id' },
+            { title: 'Nama', field: 'name'},
+            { title: 'Ruang', field: 'ruang'},
+            { title: 'Tanggal Awal', field: ''},
+            { title: 'Tanggal Selesai', field: 'end_time'},
+            { title : 'Dokumen', field : 'document'},
+    ]
+    const dataSource = dataOrderan[0]
     
     const tableIcons = {
         Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -69,7 +80,7 @@ const Orderanall = (props) => {
       title="Semua"
       columns={ayo.columns}
       icons={tableIcons}
-      data={ayo.data}
+      data={yoi}
       editable={{
         onRowUpdate: (newData, oldData) =>
           new Promise(resolve => {

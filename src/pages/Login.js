@@ -10,6 +10,9 @@ import jwt from 'jsonwebtoken';
 import imglogin from '../img-banner.png'
 import ReactLoading from 'react-loading';
 
+import { Typography, Divider } from 'antd';
+const { Title, Paragraph, Text } = Typography;
+
 const Login = () => {
     const[nim,setNIM] = useState('');
     const[password,setPassword] = useState('');
@@ -66,7 +69,7 @@ const Login = () => {
                         <img src={logo} style={{width:60}}/>
                         <div className="login-form">
                             <div className="form-title">
-                                <h1>Login</h1>
+                                <Title>Login</Title>
                                 <p>Selamat datang di aplikasi peminjaman ruang.</p>
                             </div>
                             <div className="form-box">
@@ -86,7 +89,9 @@ const Login = () => {
                             </div>
                         </div>
                         <div className="center-view" style={{marginTop:20}}>
+                            <Text>
                                 Copyright © RoadtoBCC. All Rights Reserved.
+                                </Text>
                             </div>
                     </div>
                 </div>

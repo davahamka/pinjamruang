@@ -1,6 +1,8 @@
 import React,{useState, useEffect, forwardRef} from 'react';
 import MaterialTable from 'material-table';
 import Axios from 'axios';
+import Table from 'antd/es/table'; // for js
+import 'antd/es/table/style/css'; // for css
 
 import AddBox from '@material-ui/icons/AddBox';
 import ArrowDownward from '@material-ui/icons/ArrowDownward';
@@ -27,21 +29,52 @@ const Orderan = (props) => {
     dataOrderan.push(props.orderan.data)
     let yoi = [{id:props.orderan.data,rooms_id:[129,322],g:'a',f:'b',c:'b',e:'b'},{id:'b'}];
     console.log(yoi)
-    console.log(dataOrderan)
+    console.log(dataOrderan[0])
 
-
-    const[ayo,setAyo] = useState({
-        columns: [
-            { title: 'ID', field: '_id' },
-            { title: 'Tanggal Order', field: 'rooms_id' },
-            { title: 'Nama', field: 'name'},
-            { title: 'Ruang', field: 'ruang'},
-            { title: 'Tanggal Awal', field: ''},
-            { title: 'Tanggal Selesai', field: 'end_time'},
-            { title : 'Dokumen', field : 'document'},
-          ],
-          data: yoi,
-    })
+    const dataSource = dataOrderan[0];
+    
+    const columns = [
+      {
+        title: 'ID',
+        dataIndex: '_id',
+        key: '_id',
+      },
+      {
+        title: 'Tanggal Order',
+        dataIndex: 'date_create',
+        key: 'date_create',
+      },
+      {
+        title: 'Nama',
+        dataIndex: 'status',
+        key: 'is_accepted',
+      },
+      {
+        title: 'Ruang',
+        dataIndex: 'address',
+        key: 'address',
+      },
+      {
+        title: 'Tanggal',
+        dataIndex: 'address',
+        key: 'address',
+      },
+      {
+        title: 'Jam',
+        dataIndex: 'address',
+        key: 'address',
+      },
+      {
+        title: 'Kegiatan',
+        dataIndex: 'address',
+        key: 'address',
+      },
+      {
+        title: 'Option',
+        dataIndex: 'address',
+        key: 'address',
+      },
+    ];
     
     const tableIcons = {
         Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -65,43 +98,7 @@ const Orderan = (props) => {
     return(
         <div>
             <div className="tab-ruang">
-            <MaterialTable
-      title="Belum diverifikasi"
-      columns={ayo.columns}
-      icons={tableIcons}
-      data={ayo.data}
-      editable={{
-        onRowUpdate: (newData, oldData) =>
-          new Promise(resolve => {
-            setTimeout(() => {
-              resolve();
-              if (oldData) {
-                setAyo(prevState => {
-                  const data = [...prevState.data];
-                  data[data.indexOf(oldData)] = newData;
-                  return { ...prevState, data };
-                });
-              }
-            }, 600);
-          }),
-        onRowDelete: oldData =>
-          new Promise(resolve => {
-            setTimeout(() => {
-              resolve();
-              setAyo(prevState => {
-                const data = [...prevState.data];
-                data.splice(data.indexOf(oldData), 1);
-                return { ...prevState, data };
-              });
-            }, 600);
-          }),
-      }}
-      options={{
-        actionsColumnIndex: -1,
-
-        
-      }}
-    />
+            <Table dataSource={dataSource} columns={columns} />
             </div>
         </div>
     );

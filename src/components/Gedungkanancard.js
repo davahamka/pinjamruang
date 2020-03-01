@@ -17,7 +17,7 @@ const Gedungkanancard = (props) =>{
                         {x}
                     </div>
                 </div>
-                <div className="container" style={{marginLeft:-320,marginTop:-30,marginBottom:-70}}>
+                <div className="container" style={{marginLeft:-360,marginTop:-30,marginBottom:-70}}>
                 <div className="flexu" style={{marginLeft:-100}}>
                     <div className="jamjaman">
                         <div className="jamku">07.00 - 07.50</div>
@@ -27,13 +27,13 @@ const Gedungkanancard = (props) =>{
                         <div className="jamku">10.20 - 11.10</div>
                         <div className="jamku">11.10 - 12.00</div>
                     </div>  
-                    <div className="" style={{marginLeft:10}}>
-                        <div className="jamku">Tersedia</div>
-                        <div className="jamku">Tersedia</div> 
-                        <div className="jamku">Tersedia</div> 
-                        <div className="jamku">Tersedia</div> 
-                        <div className="jamku">Tersedia</div>
-                        <div className="jamku">Tersedia</div>  
+                    <div className="" style={{marginLeft:14}}>
+                        <div className="jamku" style={{background:'#C4C4C4',paddingLeft:6,paddingRight:6,borderRadius:20,color:'#35405A'}}>Tersedia</div>
+                        <div className="jamku" style={{background:'#C4C4C4',paddingLeft:6,paddingRight:6,borderRadius:20,color:'#35405A'}}>Tersedia</div> 
+                        <div className="jamku" style={{background:'#C4C4C4',paddingLeft:6,paddingRight:6,borderRadius:20,color:'#35405A'}}>Tersedia</div> 
+                        <div className="jamku" style={{background:'#C4C4C4',paddingLeft:6,paddingRight:6,borderRadius:20,color:'#35405A'}}>Tersedia</div> 
+                        <div className="jamku" style={{background:'#C4C4C4',paddingLeft:6,paddingRight:6,borderRadius:20,color:'#35405A'}}>Tersedia</div>
+                        <div className="jamku" style={{background:'#C4C4C4',paddingLeft:6,paddingRight:6,borderRadius:20,color:'#35405A'}}>Tersedia</div>  
                     </div>  
                     <div className="jamjaman">
                         <div className="jamku">12.00 - 12.50</div>
@@ -43,13 +43,13 @@ const Gedungkanancard = (props) =>{
                         <div className="jamku">15.20 - 16.10</div>
                         <div className="jamku">16.10 - 17.00</div>
                     </div>   
-                    <div className="" style={{marginLeft:10}}>
-                        <div className="jamku">Tersedia</div>
-                        <div className="jamku">Tersedia</div> 
-                        <div className="jamku">Tersedia</div> 
-                        <div className="jamku">Tersedia</div> 
-                        <div className="jamku">Tersedia</div>
-                        <div className="jamku">Tersedia</div>  
+                    <div className="" style={{marginLeft:14}}>
+                        <div className="jamku" style={{background:'#C4C4C4',paddingLeft:6,paddingRight:6,borderRadius:20,color:'#35405A'}}>Tersedia</div>
+                        <div className="jamku" style={{background:'#C4C4C4',paddingLeft:6,paddingRight:6,borderRadius:20,color:'#35405A'}}>Tersedia</div> 
+                        <div className="jamku" style={{background:'#C4C4C4',paddingLeft:6,paddingRight:6,borderRadius:20,color:'#35405A'}}>Tersedia</div> 
+                        <div className="jamku" style={{background:'#C4C4C4',paddingLeft:6,paddingRight:6,borderRadius:20,color:'#35405A'}}>Tersedia</div> 
+                        <div className="jamku" style={{background:'#C4C4C4',paddingLeft:6,paddingRight:6,borderRadius:20,color:'#35405A'}}>Tersedia</div>
+                        <div className="jamku" style={{background:'#C4C4C4',paddingLeft:6,paddingRight:6,borderRadius:20,color:'#35405A'}}>Tersedia</div>  
                     </div>  
                     <div className="jamjaman">
                         <div className="jamku">17.00 - 17.50</div>
@@ -59,13 +59,13 @@ const Gedungkanancard = (props) =>{
                         <div className="jamku">20.20 - 21.10</div>
                         <div className="jamku">21.10 - 22.00</div>
                     </div>  
-                    <div className="" style={{marginLeft:10}}>
-                        <div className="jamku">Tersedia</div>
-                        <div className="jamku">Tersedia</div> 
-                        <div className="jamku">Tersedia</div> 
-                        <div className="jamku">Tersedia</div> 
-                        <div className="jamku">Tersedia</div>
-                        <div className="jamku">Tersedia</div>  
+                    <div className="" style={{marginLeft:14}}>
+                        <div className="jamku" style={{background:'#C4C4C4',paddingLeft:6,paddingRight:6,borderRadius:20,color:'#35405A'}}>Tersedia</div>
+                        <div className="jamku" style={{background:'#C4C4C4',paddingLeft:6,paddingRight:6,borderRadius:20,color:'#35405A'}}>Tersedia</div> 
+                        <div className="jamku" style={{background:'#C4C4C4',paddingLeft:6,paddingRight:6,borderRadius:20,color:'#35405A'}}>Tersedia</div> 
+                        <div className="jamku" style={{background:'#C4C4C4',paddingLeft:6,paddingRight:6,borderRadius:20,color:'#35405A'}}>Tersedia</div> 
+                        <div className="jamku" style={{background:'#C4C4C4',paddingLeft:6,paddingRight:6,borderRadius:20,color:'#35405A'}}>Tersedia</div>
+                        <div className="jamku" style={{background:'#C4C4C4',paddingLeft:6,paddingRight:6,borderRadius:20,color:'#35405A'}}>Tersedia</div>  
                     </div>     
                 </div>
                 </div>
